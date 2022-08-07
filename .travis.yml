@@ -21,4 +21,4 @@ after_success:
   - docker push willydocker5/multi-client
   - docker push willydocker5/multi-nginx
   - docker push willydocker5/multi-server
-  - docker push willydocker5/worker
+  - docker push willydocker5/multi-worer

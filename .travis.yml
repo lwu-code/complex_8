@@ -5,13 +5,13 @@ services:
   - docker
 
 before_install:
-  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t willydocker5/repo1 -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true stephengrider/react-test npm test
+  - docker run -e CI=true willydocker5/repo1 npm test
 
 after_success:
-  - docker build -t willydocker5/repo1 ./client
+  - docker build -t  ./client
   - docker build -t willydocker5/repo1 ./nginx
   - docker build -t willydocker5/repo1 ./server
   - docker build -t willydocker5/repo1 ./worker

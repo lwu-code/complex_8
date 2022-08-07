@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true stephengrider/react-test npm test
+
+after_success:
+  - docker build -t willydocker5/repo1 ./client
+  - docker build -t willydocker5/repo1 ./nginx
+  - docker build -t willydocker5/repo1 ./server
+  - docker build -t willydocker5/repo1 ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub from here
+  - docker push willydocker5/repo1
+  - docker push willydocker5/repo1
+  - docker push willydocker5/repo1
+  - docker push willydocker5/repo1

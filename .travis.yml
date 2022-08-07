@@ -11,14 +11,14 @@ script:
   - docker run -e CI=true willydocker5/repo1 npm test
 
 after_success:
-  - docker build -t  ./client
-  - docker build -t willydocker5/repo1 ./nginx
-  - docker build -t willydocker5/repo1 ./server
-  - docker build -t willydocker5/repo1 ./worker
+  - docker build -t willydocker5/multi-client ./client
+  - docker build -t willydocker5/multi-nginx ./nginx
+  - docker build -t willydocker5/multi-server ./server
+  - docker build -t willydocker5/multi-worer ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub from here
-  - docker push willydocker5/repo1
-  - docker push willydocker5/repo1
-  - docker push willydocker5/repo1
-  - docker push willydocker5/repo1
+  - docker push willydocker5/multi-client
+  - docker push willydocker5/multi-nginx
+  - docker push willydocker5/multi-server
+  - docker push willydocker5/worker
